@@ -1,8 +1,10 @@
+import { Outlet } from "react-router-dom";
+
 function Users() {
     return (
-    <>
-    <h1>User Page </h1>
-    </>
+    <section className="py-4">
+        <Outlet/>
+    </section>
     );
 }
 
