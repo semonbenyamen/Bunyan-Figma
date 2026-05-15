@@ -14,3 +14,13 @@
 .navItem:hover {
     background-color: rgb(255, 255, 255, 0.1);
 }
+
+/* Draft badge styling */
+.badge {
+    background-color: #ff9800;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: auto;
+}

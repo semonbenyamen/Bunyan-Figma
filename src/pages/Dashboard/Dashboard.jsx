@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Routes, Route } from "react-router-dom";
 import Footer from "../../components/Dashboard/Footer/Footer.jsx";
 import Navbar from "../../components/Dashboard/Navbr/Navbar.jsx";
@@ -10,12 +12,15 @@ import FormDashboard from "../../components/ui/CardStatus/FormDashboard/FormDash
 
 
 function Dashboard() {
+    
+    const [isDraft, setIsDraft] = useState(false);
+    
 
     return(
         <>
         <Navbar adminName="Semon"/>
         <div className="d-flex">
-            <Sidebar/>
+            <Sidebar isDraft={isDraft}/>
             <main className="flex-grow-1">
                 <Routes>
                     <Route path="/" element={<HomeDashboard/>} />
@@ -24,7 +29,9 @@ function Dashboard() {
                     {/* first child */}
                     <Route index element={<TableDashboard/>}/>
                     {/* second child */}
-                    <Route path="add" element={<FormDashboard/>}/>
+                    
+                    {/* Pass draft state updater to Add User form */}
+                    <Route path="add" element={<FormDashboard setIsDraft={setIsDraft}/>}/>
                     </Route>
 
 

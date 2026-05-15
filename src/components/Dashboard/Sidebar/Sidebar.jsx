@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css'
 
 // Receiving props
-function Sidebar() {
+function Sidebar({ isDraft }) {
 
     const links = [
         {icon: "fa-chart-line", title: "Status", path: "/"},
@@ -23,6 +23,14 @@ function Sidebar() {
                 className={`${styles.navItem} d-flex align-items-center gap-3`} key={index}>
                 <i className={`fa-solid ${item.icon} fs-5`}></i>
                 <span className="fs-5">{item.title}</span>
+
+                {/* Show draft badge when form contains data */}
+                {
+                    item.title === "Users management" && isDraft && (
+                        <span className={styles.badge}>Draft</span>
+                    )
+                }
+                
                 </NavLink>
                 ))}
        
@@ -31,4 +39,4 @@ function Sidebar() {
 
     )
 }
-export default Sidebar
+export default Sidebar;
