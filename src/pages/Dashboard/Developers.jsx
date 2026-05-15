@@ -1,15 +1,12 @@
 import { Outlet } from "react-router-dom";
 
-
-
-function Projects () {
+function Developers() {
     return (
         <section className="py-4">
             <Outlet/>
         </section>
-    
-  
+        
     );
 }
 
-export default Projects;
+export default Developers;

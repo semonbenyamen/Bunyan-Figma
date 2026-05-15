@@ -9,33 +9,58 @@ import Users from "./Users.jsx";
 import Projects from "./Projects.jsx";
 import TableDashboard from "../../components/ui/TableDashboard/TableDashboard.jsx";
 import FormDashboard from "../../components/ui/CardStatus/FormDashboard/FormDashboard.jsx";
+import Developers from "./Developers.jsx";
 
 
 function Dashboard() {
     
-    const [isDraft, setIsDraft] = useState(false);
+    const [drafts, setDrafts] = useState({
+        users: false,
+        projects: false,
+        developers: false
+    });
+
+    const handleDraftChange = (type, value) => {
+        setDrafts(prev => ({
+            ...prev,
+            [type]: value
+        }));
+    };
     
 
     return(
         <>
         <Navbar adminName="Semon"/>
         <div className="d-flex">
-            <Sidebar isDraft={isDraft}/>
+            <Sidebar drafts={drafts}/>
             <main className="flex-grow-1">
                 <Routes>
                     <Route path="/" element={<HomeDashboard/>} />
 
                     <Route path="/users" element={<Users/>}>
                     {/* first child */}
-                    <Route index element={<TableDashboard/>}/>
+                    <Route index element={<TableDashboard title="User"/>}/>
                     {/* second child */}
                     
                     {/* Pass draft state updater to Add User form */}
-                    <Route path="add" element={<FormDashboard setIsDraft={setIsDraft}/>}/>
+                    <Route path="add" element={<FormDashboard setIsDraft={(value) => handleDraftChange ("users", value)}/>}/>
                     </Route>
 
 
-                    <Route path="/projects" element={<Projects/>} />
+                    <Route path="/projects" element={<Projects/>} >
+                    <Route index element={<TableDashboard title="Project"/>}
+                    />
+                    <Route path="add" element={<FormDashboard setIsDraft={(value) => handleDraftChange ("projects", value)}/>}
+                    />
+                    </Route>
+
+                    <Route path="/developers" element={<Developers/>}>
+                    <Route index element={<TableDashboard title="Developer"/>}/>
+
+                    <Route path="add" element={<FormDashboard setIsDraft={(value) => handleDraftChange ("developers", value)}/>}/>
+
+                    
+                    </Route>
                 </Routes>
             </main>
         </div>

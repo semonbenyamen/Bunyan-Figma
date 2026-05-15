@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-function FormDashboard({ setIsDraft }) {
+function FormDashboard({ setIsDraft  }) {
   // Manage form inputs and update draft status
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +33,7 @@ function FormDashboard({ setIsDraft }) {
     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Password</label>
+    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
 
     {/*Update password input value and sync draft badge state*/}
     <input type="password" className="form-control" id="exampleInputPassword1"

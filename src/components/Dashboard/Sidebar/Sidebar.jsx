@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css'
 
 // Receiving props
-function Sidebar({ isDraft }) {
+function Sidebar({ drafts  }) {
 
     const links = [
         {icon: "fa-chart-line", title: "Status", path: "/"},
         {icon: "fa-users", title: "Users management", path: "users"},
         {icon: "fa-building", title: "Projects management", path: "/projects"},
-        {icon: "fa-building", title: "Developers management"},
+        {icon: "fa-building", title: "Developers management", path: "/developers"},
         {icon: "fa-globe", title: "CMS"},
         {icon: "fa-message", title: "Live chat"},
     ];
@@ -26,10 +26,24 @@ function Sidebar({ isDraft }) {
 
                 {/* Show draft badge when form contains data */}
                 {
-                    item.title === "Users management" && isDraft && (
+                    item.title === "Users management" && drafts.users && (
                         <span className={styles.badge}>Draft</span>
                     )
                 }
+
+                {
+                    item.title === "Projects management" && drafts.projects && (
+                        <span className={styles.badge}>Draft</span>
+                    )
+                }
+
+                {
+                    item.title === "Developers management" && drafts.developers && (
+                        <span className={styles.badge}>Draft</span>
+                    )
+                }
+
+                
                 
                 </NavLink>
                 ))}
